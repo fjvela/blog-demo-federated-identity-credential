@@ -20,6 +20,13 @@ resource "azurerm_federated_identity_credential" "federated_identity_credential"
   subject                   = "repo:${var.github_organization_name}/${var.github_repository_name}:ref:refs/heads/${each.value}"
 }
 
+resource "azurerm_role_assignment" "uid_reader" {
+  scope                = azurerm_resource_group.rg.id
+  role_definition_name = "Reader"
+  principal_id         = azurerm_user_assigned_identity.uid.principal_id
+  principal_type       = "ServicePrincipal"
+}
+
 # GitHub Setup
 data "github_repository" "this" {
   name = var.github_repository_name
