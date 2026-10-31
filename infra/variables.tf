@@ -18,3 +18,9 @@ variable "github_repository_name" {
   description = "Name of the repository to setup the secrets needed"
   default     = "blog-demo-federated-identity-credential"
 }
+
+variable "github_token" {
+  description = "GitHub token with permissions to manage repository secrets"
+  type        = string
+  sensitive   = true
+}

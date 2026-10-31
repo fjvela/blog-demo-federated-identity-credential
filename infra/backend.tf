@@ -33,6 +33,8 @@ provider "azurerm" {
 
 provider "github" {
   owner = var.github_organization_name
+  token = var.github_token
 }
+
 
 data "azurerm_subscription" "current" {}
