@@ -2,22 +2,27 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.4.0"
+      version = "5.11.0"
     }
 
     github = {
       source  = "integrations/github"
-      version = "6.3.0"
+      version = "6.13.0"
     }
   }
 }
 
 module "naming" {
-  source = "Azure/naming/azurerm"
+  source  = "Azure/naming/azurerm"
+  version = "0.4.4"
 }
 
 provider "azurerm" {
   subscription_id = var.azure_subscription_id
+
+  resource_providers_to_register = [
+    "Microsoft.ManagedIdentity",
+  ]
 
   features {
     resource_group {
